@@ -25,6 +25,7 @@
             // add js code here
             emotionArray = ["Joy", "Trust", "Fear", "Surprise", "Sadness", "Disgust", "Anger", "Anticipation"]
 
+            // create emotion buttons dynamically
             for (i=0; i<emotionArray.length; i++) {
                 var gifButton = $("<button>");
                 $("#buttonHolder").append(gifButton.text(emotionArray[i]));
@@ -32,11 +33,35 @@
                 gifButton.attr("data-value", emotionArray[i]);
             };
             
+            // on click event for emotion buttons
             $(".gifButton").on("click", function() {
                 var emotion = $(this).attr("data-value");
-                $("#gifHolder").text(emotion);
-                console.log(emotion);
+
+                // call gifhy api
+                var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+                emotion + "&api_key=dc6zaTOxFJmzC" + "&limit=10";
+                
+                // retreive data from api
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function(response) {
+                    // return 10 items from data array
+                    for (j=0; j<10; j++) {
+                        var itemRating = response.data[j].rating;
+                        var itemGif = $("<img>");
+                        itemGif.attr("src", response.data[j].images.fixed_height.url);
+                        
+                        // display to html
+                        var p = $("<p>");
+                        $("#gifHolder").prepend(p.append(itemGif));
+                        $("#gifHolder").prepend("Rating: " + itemRating);
+                    };
+                });
+                
             });
+
+
         </script>
     </body>
 
