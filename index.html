@@ -23,6 +23,20 @@
         <!-- JS Script -->
         <script>
             // add js code here
+            emotionArray = ["Joy", "Trust", "Fear", "Surprise", "Sadness", "Disgust", "Anger", "Anticipation"]
+
+            for (i=0; i<emotionArray.length; i++) {
+                var gifButton = $("<button>");
+                $("#buttonHolder").append(gifButton.text(emotionArray[i]));
+                gifButton.attr("class", "gifButton")
+                gifButton.attr("data-value", emotionArray[i]);
+            };
+            
+            $(".gifButton").on("click", function() {
+                var emotion = $(this).attr("data-value");
+                $("#gifHolder").text(emotion);
+                console.log(emotion);
+            });
         </script>
     </body>
 
