@@ -7,7 +7,7 @@
 
         <!-- css reset -->
         <link rel="stylesheet" href="./assets/css/reset.css">
-        <!-- bootstrap -->
+        <!-- bootstrap 4-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!-- css styles -->
         <link rel="stylesheet" href="./assets/css/style.css">
@@ -17,17 +17,24 @@
     </head>
 
     <body>
-        <div id="addButton">
-            <form>
-                <div class="form-group form-group-lg">
-                    <label for="newEmotion">Add an Emotion: </label>
-                    <input type="text" id="newEmotion" class="form-control">
-                </div>
-                <button type="submit" id="submitButton">Submit</button>
-            </form>
-        </div><br>
-        <div id="buttonHolder">Select an Emotion: </div><br>
-        <div id="gifHolder"></div>
+        <nav class="navbar navbar-light bg-light">
+            <div class="container form-inline">
+                <a class="navbar-brand text-primary" style="font-size: 20pt;" href="#!">Gif Finder</a>
+                <form class="form-inline input-group" role="search">
+                    <input type="text" id="newEmotion" class="form-control" placeholder="Add an Emotion">
+                    <div class="input-group-append">
+                        <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </nav>  
+        <br>
+        <div class="container">
+            <div id="buttonHolder" class="row">Select an Emotion: </div><br>
+
+            <div id="gifHolder"></div>
+        </div>
+
 
         <!-- JS Script -->
         <script>
