@@ -61,8 +61,11 @@
                         for (j=0; j<10; j++) {
                             var itemRating = response.data[j].rating;
                             var itemGif = $("<img>");
-                            itemGif.attr("src", response.data[j].images.fixed_height.url);
-                            itemGif.attr("class", "card-img-top")
+                            itemGif.attr("src", response.data[j].images.fixed_height_still.url);
+                            itemGif.attr("url-still", response.data[j].images.fixed_height_still.url);
+                            itemGif.attr("url-animate", response.data[j].images.fixed_height.url);                            
+                            itemGif.attr("state", "still")
+                            itemGif.attr("class", "card-img-top gif")
                             // display to html
                             var card = $("<div>");
                             card.attr("class", "card inline-block");
@@ -74,11 +77,24 @@
                             card.append(cardBody.append("Rating: " + itemRating));
                             $("#gifHolder").prepend(card);
                         };
+                        // toggle between animate and unanimate when gif clicked
+                        $(".gif").on("click", function() {
+                            var state = $(this).attr("state");
+                            if (state === "still") {
+                                $(this).attr("src", $(this).attr("url-animate"));
+                                $(this).attr("state", "animate");
+                            }else if (state === "animate") {
+                                $(this).attr("src", $(this).attr("url-still"));
+                                $(this).attr("state", "still");
+                            };
+                        });
                     });
 
                 });
 
+
             };
+
             // ------------------------------------------------------------------------------------
             // create array to hold emotions
             emotionArray = ["Joy", "Trust", "Fear", "Surprise", "Sadness", "Disgust", "Anger", "Anticipation"]
@@ -106,7 +122,6 @@
             });
 
             findGifs();
-
         });
         </script>
     </body>
