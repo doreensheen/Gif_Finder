@@ -33,7 +33,7 @@
         <div class="container">
             <div id="buttonHolder" class="row"></div><br>
 
-            <div id="gifHolder"></div>
+            <div id="gifHolder" class="card-columns"></div>
         </div>
 
 
@@ -44,9 +44,11 @@
             // function calls api and displays relevent gifs when an emotion button is clicked
             function findGifs() {
                 $(".gifButton").on("click", function() {
-                    var emotion = $(this).attr("data-value");
+                    // empty div #gifHolder
+                    $("#gifHolder").html("");
 
                     // call gifhy api
+                    var emotion = $(this).attr("data-value");
                     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
                     emotion + "&api_key=dc6zaTOxFJmzC" + "&limit=10";
                     
@@ -60,10 +62,17 @@
                             var itemRating = response.data[j].rating;
                             var itemGif = $("<img>");
                             itemGif.attr("src", response.data[j].images.fixed_height.url);
+                            itemGif.attr("class", "card-img-top")
                             // display to html
-                            var p = $("<p>");
-                            $("#gifHolder").prepend(p.append(itemGif));
-                            $("#gifHolder").prepend("Rating: " + itemRating);
+                            var card = $("<div>");
+                            card.attr("class", "card inline-block");
+
+                            var cardBody = $("<div>");
+                            cardBody.attr("class", "card-footer bg-white")
+
+                            card.append(itemGif);
+                            card.append(cardBody.append("Rating: " + itemRating));
+                            $("#gifHolder").prepend(card);
                         };
                     });
 
