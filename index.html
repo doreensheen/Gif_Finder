@@ -3,6 +3,7 @@
 
     <head>
         <meta charset="utf=8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Gif Finder</title>
 
         <!-- css reset -->
@@ -30,7 +31,7 @@
         </nav>  
         <br>
         <div class="container">
-            <div id="buttonHolder" class="row">Select an Emotion: </div><br>
+            <div id="buttonHolder" class="row"></div><br>
 
             <div id="gifHolder"></div>
         </div>
@@ -77,7 +78,7 @@
             for (i=0; i<emotionArray.length; i++) {
                 var gifButton = $("<button>");
                 $("#buttonHolder").append(gifButton.text(emotionArray[i]));
-                gifButton.attr("class", "gifButton");
+                gifButton.attr("class", "gifButton btn btn-success");
                 gifButton.attr("data-value", emotionArray[i]);
             };
                 
@@ -88,7 +89,7 @@
                 emotionArray.push(inputText);
                 var newGifButton = $("<button>");
                 $("#buttonHolder").append(newGifButton.text(inputText));
-                newGifButton.attr("class", "gifButton");
+                newGifButton.attr("class", "gifButton btn btn-success");
                 newGifButton.attr("id", "test");
                 newGifButton.attr("data-value", inputText);
                 
