@@ -16,3 +16,8 @@ body {
 .card-img-top {
     margin-top: 2px;
 }
+
+
+.card-columns {
+      column-count: 4;
+    }
