@@ -7,7 +7,7 @@ $(document).ready(function() {
         $(".gifButton").on("click", function() {
             // empty div #gifHolder
             $("#gifHolder").html("");
-
+            
             // call gifhy api
             var emotion = $(this).attr("data-value");
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -48,42 +48,49 @@ $(document).ready(function() {
                         cardBody.append(saveButton.text("Save"));
                     card.append(itemGif);
                     card.append(cardBody);
-                   
+                    
                     // display to html
                     $("#gifHolder").prepend(card);
-        
+                    
                 };
-
+                        
                 // toggle between animate and unanimate when gif clicked
                 $(".gif").on("click", function() {
                     var state = $(this).attr("state");
                     if (state === "still") {
-                        console.log(state);
                         $(this).attr("src", $(this).attr("url-animate"));
                         $(this).attr("state", "animate");
                     }else if (state === "animate") {
-                        console.log(state);
                         $(this).attr("src", $(this).attr("url-still"));
                         $(this).attr("state", "still");
                     };
                 });
-
+                        
                 // save gif to favorites array when save button clicked (work in progress)
                 $(".save").on("click", function() {
                     var gifj = $(this).attr("id");
                     var savedGifUrl = $("#gif" + gifj).attr("url-animate");
-
-                    var savedGifItem = $("<img>");
-                    savedGifItem.attr("src", savedGifUrl)
-                    $("#favoritesHolder").prepend(savedGifItem);
+                    console.log(savedGifUrl);
+                    favArray.push(savedGifUrl);
+                    console.log(favArray);
+                    // empty favoritesHolder before repopulating
+                    $("#favoritesHolder").html("");
+                    for (k=0; k<favArray.length; k++) {
+                        var savedGifItem = $("<img>");
+                        savedGifItem.attr("src", favArray[k]);
+                        savedGifItem.attr("class", "card-img-top gif");
+                        savedGifItem.attr("id", "favGif" + k);
+                        $("#favoritesHolder").prepend(savedGifItem);
+                    };
                 });
                 
+                        
             });
-            
+                    
         });
-        
+                
     };
-    
+            
     // ------------------------------------------------------------------------------------
     // create array to hold emotions
     emotionArray = [
@@ -101,7 +108,9 @@ $(document).ready(function() {
         "Boredom",
         "Confusion",
         "Awe"];
-    
+    // create aray to hold favorited items
+    var favArray=[];
+
     // create emotion buttons dynamically
     for (i=0; i<emotionArray.length; i++) {
         var gifButton = $("<button>");

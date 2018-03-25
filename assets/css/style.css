@@ -9,3 +9,10 @@ body {
     margin-bottom: 5px;
 }
 
+.modal-lg {
+    max-width: 1000px;
+}
+
+.card-img-top {
+    margin-top: 2px;
+}

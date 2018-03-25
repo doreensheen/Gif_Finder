@@ -12,9 +12,11 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!-- css styles -->
         <link rel="stylesheet" href="./assets/css/style.css">
-
+        
         <!-- jQuery -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- bootstrap js -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     </head>
 
     <body>
@@ -29,17 +31,46 @@
                         </div>
                     </div>
                 </form>
-                <a id="goToFavorites" class="btn btn-success" href="./favorites.html">Saved Favorites</a>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Saved Favorites</button>
             </div>
         </nav>  
         <br>
         <div class="container">
             <div id="buttonHolder" class="row"></div><br>
             <div id="gifHolder" class="card-columns"></div>
-            <h2>Saved Favorites</h2>
-            <div id="favoritesHolder" class="card-columns" style="color: white;">You don't have any saved favorites yet.</div>
-        </div>
+            <br>
+            <!-- <h2>Saved Favorites</h2> -->
+            <br>
+            <!-- <div id="favoritesHolder" class="card-columns"></div> -->
 
+            <!-- ________________________________________________________________________________________ -->
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                    
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                        <h4 class="modal-title">Saved Favorites</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div id="favoritesHolder" class="card-columns"></div>
+                        </div>
+                        
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- ___________________________________________________________________________________________ -->
+
+        </div>
 
         <script src="./assets/javascript/app.js"></script>
     
